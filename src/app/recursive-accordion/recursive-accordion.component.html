@@ -1,0 +1,23 @@
+<mat-accordion multi>
+  <mat-expansion-panel *ngFor="let p of statsPanel">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{p.label}}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{stats[p.key]?.value}}
+        <!-- <mat-icon>account_circle</mat-icon> -->
+      </mat-panel-description>
+    </mat-expansion-panel-header>  
+
+    <span>
+      <small *ngIf="!p.children.length">
+        {{p.key}}
+      </small>
+      <br>
+      {{stats[p.key]?.body}}
+    </span>
+    <recursive-accordion *ngIf="p.children.length" [statsPanel]="p.children" [stats]="stats">
+    </recursive-accordion>
+  </mat-expansion-panel>
+</mat-accordion>

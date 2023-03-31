@@ -1,0 +1,43 @@
+dialog {
+  width: 90vw;
+  height: 90vh;
+}
+
+nav button {
+  margin-right: 8px;
+}
+
+button.preload {
+  position: fixed;
+  left: calc(50vw - 100px);
+  top: 50vh;
+}
+
+h1 {
+  display: inline-block;
+  margin-left: 16px;
+}
+
+dialog img {
+  width: calc(90vw - 17px);
+}
+
+code {
+  font-family: monospace;
+  height: calc(90vh - 100px);
+  background-color: #ccc;
+  border: solid 1px #999;
+  border-radius: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  display: block;
+  overflow: auto;
+  white-space: break-spaces;
+}
+
+img.config {
+  width: 200px;
+  cursor: pointer;
+}
