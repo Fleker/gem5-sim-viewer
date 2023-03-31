@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build && sed -i 's/<base href=\"/\">//g' ./dist/m5out/index.html",
+    "build": "ng build && sed -i 's|<base href=\"/\">||g' ./dist/m5out/index.html",
     "watch": "ng build --watch --configuration development",
     "test": "exit 0"
   },
