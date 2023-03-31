@@ -5,6 +5,11 @@
   </span>
 </nav>
 
+<div *ngIf="!loadedFiles.length" class="preload">
+  <h1>Welcome to the Gem5 m5Out Viewer</h1>
+  <h2>Select the output folder below and a rich view will be presented</h2>
+</div>
+
 <main>
   <img class="config" [src]="configSvg" *ngIf="configSvg" (click)="openConfigViewer()" />
 

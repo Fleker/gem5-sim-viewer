@@ -13,6 +13,12 @@ button.preload {
   top: 50vh;
 }
 
+div.preload h1, div.preload h2 {
+  display: block;
+  margin-top: 80px;
+  text-align: center;
+}
+
 h1 {
   display: inline-block;
   margin-left: 16px;
