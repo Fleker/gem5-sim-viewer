@@ -43,6 +43,13 @@ code {
   white-space: break-spaces;
 }
 
+@media (prefers-color-scheme: dark) {
+  code {
+    background-color: #333;
+    color: #ccc;
+  }
+}
+
 img.config {
   width: 200px;
   cursor: pointer;
