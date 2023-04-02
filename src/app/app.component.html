@@ -12,7 +12,9 @@
 
 <main>
   <img class="config" [src]="configSvg" *ngIf="configSvg" (click)="openConfigViewer()" />
-
+  <button mat-icon-button (click)="openSystemViewer()">
+    <mat-icon *ngIf="configJson">developer_board</mat-icon>
+  </button>
   <recursive-accordion [statsPanel]="statsPanel" [stats]="stats"></recursive-accordion>
 </main>
 
@@ -34,9 +36,63 @@
   <img [src]="configSvg" />
 </dialog>
 
-<dialog #sysviewer>
+<dialog #sysviewer *ngIf="configJson">
   <button mat-icon-button (click)="close()">
     <mat-icon>close</mat-icon>
   </button>
   <h1>config.json</h1>
+  <br>
+  <strong>System</strong>
+  <ul>
+    <li>
+      {{configJson.system.l2bus.path}}
+    </li>
+    <li>
+      {{configJson.system.l2cache.path}}
+    </li>
+    <li>
+      {{configJson.system.mem_ctrl.path}}
+    </li>
+    <li>
+      {{configJson.system.membus.path}}
+    </li>
+  </ul>
+  <strong>Workload</strong>
+  <ul>
+    <li>{{configJson.system.workload.type}}</li>
+  </ul>
+  <strong>CPU</strong>
+  <ul>
+    <li>{{configJson.system.cpu.type}}</li>
+    <li>
+      <ul>
+        <li *ngFor="let isa of configJson.system.cpu.isa">
+          {{isa.eventq_index}}: {{isa.type}}
+        </li>
+      </ul>
+    </li>
+    <li>
+      {{configJson.system.cpu.mmu.type}}
+    </li>
+    <li>
+      {{configJson.system.cpu.power_state.path}}
+    </li>
+    <li>
+      {{configJson.system.cpu.dcache.path}}
+    </li>
+    <li>
+      {{configJson.system.cpu.icache.path}}
+    </li>
+  </ul>
+  <strong>Tasks</strong>
+  <ul>
+    <li *ngFor="let work of configJson.system.cpu.workload">
+      {{work.type}}
+      <ul>
+        <li *ngFor="let cmd of work.cmd">
+          <small>{{cmd}}</small>
+        </li>
+      </ul>
+    </li>
+  </ul>
 </dialog>

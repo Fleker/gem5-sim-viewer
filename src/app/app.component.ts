@@ -10,8 +10,10 @@ declare var window: any;
 export class AppComponent {
   @ViewChild('fileviewer') dfileViewer?: ElementRef
   @ViewChild('configviewer') dconfigViewer?: ElementRef
+  @ViewChild('sysviewer') dsystemViewer?: ElementRef
   @ViewChild('configsvg') configSvgEl?: ElementRef<HTMLImageElement>
   configSvg?: string
+  configJson?: any
   directoryHandler: any
   loadedFiles: any[] = []
   fileViewer = {
@@ -66,6 +68,9 @@ export class AppComponent {
           this.configSvg = `data:image/svg+xml;base64,${btoa(svg.substring(start))}`
           // this.configSvgEl!.nativeElement!.src = this.configSvg
         }
+        if (entry.name === 'config.json') {
+          this.configJson = JSON.parse(await file.text())
+        }
         if (entry.name === 'stats.txt') {
           const statTxt = await file.text()
           const stats: string[] = statTxt.split('\n')
@@ -105,8 +110,13 @@ export class AppComponent {
     this.dconfigViewer?.nativeElement.showModal()
   }
 
+  async openSystemViewer() {
+    this.dsystemViewer?.nativeElement.showModal()
+  }
+
   close() {
     this.dconfigViewer?.nativeElement.close()
     this.dfileViewer?.nativeElement.close()
+    this.dsystemViewer?.nativeElement.close()
   }
 }
