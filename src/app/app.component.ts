@@ -69,7 +69,11 @@ export class AppComponent {
           // this.configSvgEl!.nativeElement!.src = this.configSvg
         }
         if (entry.name === 'config.json') {
-          this.configJson = JSON.parse(await file.text())
+          const configJson = JSON.parse(await file.text())
+          if (!Array.isArray(configJson.system.cpu)) {
+            configJson.system.cpu = [configJson.system.cpu]
+          }
+          this.configJson = configJson
         }
         if (entry.name === 'stats.txt') {
           const statTxt = await file.text()

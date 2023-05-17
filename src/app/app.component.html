@@ -62,37 +62,37 @@
     <li>{{configJson.system.workload.type}}</li>
   </ul>
   <strong>CPU</strong>
-  <ul>
-    <li>{{configJson.system.cpu.type}}</li>
+  <ul *ngFor="let cpu of configJson.system.cpu">
+    <li>{{cpu.type}}</li>
+    <ul>
+      <li *ngFor="let isa of cpu.isa">
+        {{isa.eventq_index}}: {{isa.type}}
+      </li>
+    </ul>
     <li>
-      <ul>
-        <li *ngFor="let isa of configJson.system.cpu.isa">
-          {{isa.eventq_index}}: {{isa.type}}
-        </li>
-      </ul>
-    </li>
-    <li>
-      {{configJson.system.cpu.mmu.type}}
+      {{cpu.mmu.type}}
     </li>
     <li>
-      {{configJson.system.cpu.power_state.path}}
+      {{cpu.power_state.path}}
     </li>
     <li>
-      {{configJson.system.cpu.dcache.path}}
+      {{cpu.dcache.path}}
     </li>
     <li>
-      {{configJson.system.cpu.icache.path}}
+      {{cpu.icache.path}}
     </li>
-  </ul>
-  <strong>Tasks</strong>
-  <ul>
-    <li *ngFor="let work of configJson.system.cpu.workload">
-      {{work.type}}
-      <ul>
-        <li *ngFor="let cmd of work.cmd">
-          <small>{{cmd}}</small>
-        </li>
-      </ul>
+    <li>
+      <strong>Tasks</strong>
     </li>
+    <ul>
+      <li *ngFor="let work of cpu.workload">
+        {{work.type}}
+        <ul>
+          <li *ngFor="let cmd of work.cmd">
+            <small>{{work.cwd}}/{{cmd}}</small>
+          </li>
+        </ul>
+      </li>
+    </ul>
   </ul>
 </dialog>
